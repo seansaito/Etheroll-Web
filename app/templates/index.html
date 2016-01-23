@@ -1,8 +1,46 @@
 <html>
 <head>
-  <link href="/static/css/main.css" rel="stylesheet">
+  <link href="/static/css/material.css" rel="stylesheet" media="screen">
+  <link href="/static/css/material.min.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="/static/js/material.min.js"></script>
+  <script src="/static/js/material.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
+
+
 <body>
-  Hello
+  <style>
+  .login-card.mdl-card {
+  	width: 320px;
+  	height: 320px;
+  	left: 100px;
+  	position: absolute;
+  	border: 3px;
+  }
+  .login-card > .mdl-card__title {
+  	color: #fff;
+  	background-color: #000;
+  }
+  </style>
+  <div class="login-card mdl-card">
+  	<div class= "mdl-card__title mdl-card--border">
+  		<h2 class="mdl-card__title-text">Etheroll User Login</h2>
+  	</div>
+  	<div class="mdl-card__actions mdl-card--border">
+  		<form action="#">
+  			<div class="mdl-textfield mdl-js-textfield">
+  				<input class="mdl-textfield__input" type="text" id="userhash">
+  				<label class="mdl-textfield__label" for="userhash">Enter your Ong</label>
+  			</div>
+  		</form>
+
+  	</div>
+  	
+  
+
+  </div>
+
 </body>
 </html>
