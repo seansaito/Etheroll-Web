@@ -40,4 +40,6 @@ def grabcar():
 	return render_template("grabcar.html")
 
 
-
+@app.route("/sobrietytest")
+def sobrietytest():
+    return render_template("sobrietytest.html")
