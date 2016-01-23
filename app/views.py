@@ -17,10 +17,10 @@ def connect():
 		path = "app/static/json/users.json"
 		with open(path, "r+") as login_data:
 			auth = json.load(login_data)
-		if name in auth.keys():	
+		if name in auth.keys():
 			if auth[name] == password:
 				redirect_to_index = redirect('/grabcar')
-				response = app.make_response(redirect_to_index)  
+				response = app.make_response(redirect_to_index)
 				response.set_cookie('username',value=name)
 				response.set_cookie('password',value=password)
 				return response
@@ -43,3 +43,19 @@ def grabcar():
 @app.route("/sobrietytest")
 def sobrietytest():
     return render_template("sobrietytest.html")
+
+@app.route("/current_drivers")
+def current_drivers():
+    drivers = get_drivers()
+    return render_template("current_drivers.html", drivers=drivers)
+
+@app.route("/test")
+def test():
+    drivers = get_drivers()
+    return render_template("test.html", drivers=drivers)
+
+def get_drivers():
+    fp = open("app/static/json/driver_details.json", "r")
+    store = json.load(fp)
+    fp.close()
+    return store
