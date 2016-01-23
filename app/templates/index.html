@@ -1,7 +1,20 @@
-<html>
-<head>
-</head>
-<body>
-  Hello
-</body>
-</html>
+{% extends "layout.html" %}
+{% block body %}
+
+        <div class="container">
+            <h1 id="form-header">Etheroll</h1>
+			{% if error %}
+			<p class=error><strong>Error:</strong> {{ error }}
+			{% endif %}
+            <form id="person-form" method="post" action="{{url_for('connect')}}">
+                <!--<input><button>Add</button>-->
+                Username:   <br> <input class="form" type="text" name="name"><br>
+                Password:  <br> <input class="form" type="text" name="password"><br>
+                <button id="splash-button">Login</button>
+                <br>
+            </form>
+
+        </div>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+{% endblock %}
