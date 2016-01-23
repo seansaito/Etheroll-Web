@@ -5,7 +5,7 @@ Web Client for Ethereum-based service that allows ride-sharing
 
 * Clone the git repo
 * Install virtualenv ``` pip install virtualenv ```
-* Create virtualenv and name it etheroll ``` virtualenv ethroll ```
+* Create virtualenv and name it etheroll ``` virtualenv etheroll ```
 * Pip install the requirements
 * Windows:
 	* ```> etheroll\Scripts\pip install -r requirements.txt```
