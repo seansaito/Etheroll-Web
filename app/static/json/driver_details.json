@@ -1,0 +1,10 @@
+{
+  "sample_driver_address": {
+      "address": "blah",
+      "drp": 100,
+      "rate": 5,
+      "available": true,
+      "call_number": 1128091,
+      "location": [100.0, 100.0]
+  }
+}

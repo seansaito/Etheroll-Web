@@ -6,7 +6,7 @@ import json, httplib2
 
 ### Global variables ###
 
-ngrok_tunnel = "http://localhost:5000"
+ngrok_tunnel = "http://localhost:3000"
 h = httplib2.Http(".cache")
 
 ### Functions ###
@@ -39,16 +39,18 @@ def convert_from_raw(content):
     json_data = json.loads(content)
     return json_data
 
-def send_rider_details(user_details):
+def send_rider_details(driver_address, user_details):
     """
         This function is called when the user decides to sign the contract.
         It sends the user's details blockchain server, which will write the data to the block.
 
         Args:
+            driver_address (string) : The address of the driver
             user_details (dict) : This should look like the following:
                 {
-                    "contract_hash": Hash of the contract (string),
-                    "rider_id": Rider's id (string),
+                    "call_number": Number of the call (int),
+                    "amount": Amount paid by the user - by default should be 50 (int)
+                    "rider_address": Rider's address (string),
                     "crp": Customer Rating Points (int),
                     "bitcoin_addr": Rider's bitcoin address (string)
                 }
@@ -57,6 +59,16 @@ def send_rider_details(user_details):
     """
     url = ngrok_tunnel + "/send_rider_details"
 
+    # Update the driver info in driver_details.json
+    fp = open("/static/json/driver_details.json", "r")
+    store = json.load(fp)
+    fp.close()
+    store[driver_address]["available"] = False
+    fp = open("/static/json_driver_details.json", "w+")
+    fp.write(json.dumps(store))
+    fp.close()
+
+    # Make post request
     resp, content = h.request(
         uri=url,
         method="POST",
