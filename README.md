@@ -1,2 +1,13 @@
 # Etheroll-Web
 Web Client for Ethereum-based service that allows ride-sharing
+
+# Setting up
+
+* Clone the git repo
+* Create virtualenv and name it etheroll ``` virtualenv ethroll ```
+* Pip install the requirements
+* Windows:
+* > etheroll\Scripts\pip install -r requirements.txt
+* Mac:
+* $ source etheroll/bin/activate
+* $ pip install -r requirements.txt
