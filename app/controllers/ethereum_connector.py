@@ -73,7 +73,7 @@ def send_rider_details(driver_address, user_details):
         uri=url,
         method="POST",
         headers={"Content-Type": "application/json; charset=UTF-8"},
-        body=json.dumps(user_details)
+        body=json.dumps({"user_details": user_details, "driver_address": driver_address})
     )
     return resp
 
