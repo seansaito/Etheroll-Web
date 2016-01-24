@@ -137,7 +137,7 @@
               {% set counter = 1 %}
               {% for marker in markers.values() %}
                 var marker{{ counter }} = new google.maps.Marker({
-                  position: new google.maps.LatLng({{ marker[2][0] }}, {{ marker[2][1] }}),
+                  position: new google.maps.LatLng({{ marker[2][1] }}, {{ marker[2][0] }}),
                   map: map
                 })
 
@@ -304,7 +304,8 @@
 <div class="content-grid mdl-grid">
   <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
     <!-- add content here -->
-    Gruber - We grew Uber
+    <a><img class="nav-img" src="/static/pics/gruber.png">ruber - We grew Uber</a>
+    
   </div>
   <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--4-col-phone" id="map-canvas" style="position:relative;">
     <!-- also here -->
