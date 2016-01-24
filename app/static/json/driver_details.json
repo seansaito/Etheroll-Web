@@ -1,11 +1,29 @@
 {
   "sample_driver_address": {
-      "address": "blah",
+      "nickname": "aleph1",
+      "address": "20e8db80-c228-11e5-b809-3c970e9da27d",
       "drp": 100,
       "rate": 5,
       "available": true,
       "call_number": 1128091,
-      "capacity": 5,
-      "location": [1.3, 103.8]
+      "location": [ 1.29, 103.82]
+  },
+  "another_driver_address": {
+      "nickname": "omegaAlpha",
+      "address": "52757d1e-c228-11e5-8be7-3c970e9da27d",
+      "drp": 200,
+      "rate": 7,
+      "available": true,
+      "call_number": 1212121,
+      "location": [1.35, 103.96]
+  },
+  "more_driver_addresses": {
+      "nickname": "Thrasymachus",
+      "address": "7e31ee30-c228-11e5-835c-3c970e9da27d",
+      "drp": 70,
+      "rate": 3,
+      "available": true,
+      "call_number": 1214234,
+      "location": [1.34, 103.96]
   }
 }
