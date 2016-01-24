@@ -2,6 +2,7 @@
 <head>
   <link href="/static/css/material.css" rel="stylesheet" media="screen">
   <link href="/static/css/material.min.css" rel="stylesheet">
+  <link href="/static/fonts/Seminole-Regular.otf" rel='stylesheet' type='text/css'>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="/static/js/material.min.js"></script>
   <script src="/static/js/material.js"></script>
@@ -13,6 +14,21 @@
 
 <body>
   <style>
+  @font-face {
+    font-family: 'typeable';
+    src: url("/static/fonts/Arkhip_font.ttf");
+  }
+  @font-face {
+    font-family: 'taxifont';
+    src: url("/static/fonts/Taxi.ttf");
+  }
+  #typeablefont{
+    font-family: 'typeable';
+    font-weight: bold;
+  }
+  #taxi{
+    font-family: 'taxifont';
+  }
   .login-card.mdl-card {
   	margin-left: auto;
   	margin-right: auto;
@@ -22,7 +38,7 @@
   }
   .login-card > .mdl-card__title {
   	color: #fff;
-  	background-color: #000;
+  	background-color: #CC3333;
   }
   body {
   	background-image: url("/static/pics/tzO7WZX.jpg");
@@ -32,10 +48,17 @@
  {% extends "layout.html" %}
   {% block body %}
 
-  <div class="login-card mdl-card">
+  <div class="login-card mdl-card mdl-shadow--16dp">
 
     <div class= "mdl-card__title mdl-card--border">
-      <h2 class="mdl-card__title-text">Etheroll User Login</h2>
+      <div> 
+      <h4 class="mdl-card__title-text">
+      <span id="typeablefont">ruber </span>
+      <span id="taxi">&nbsp G </span>
+
+      </h2>
+
+      </div>
     </div>
 
     <div class="mdl-card__actions mdl-card--border">
