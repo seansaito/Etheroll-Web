@@ -142,7 +142,7 @@
                 })
 
 
-                var contentString = "<div id='container'><h4>DriverRating: {{ marker[0]}}</h4>";
+                var contentString = "<div id='container'><par>DriverRating: {{ marker[0]}}\n Rate: {{ marker[1] }} $/km </par>";
                 {% for relay in markers[marker] %}
                   contentString = contentString + "<p>{{ relay }}</p>";
                 {% endfor %}
@@ -155,7 +155,8 @@
                 });
 
                 google.maps.event.addListener(marker{{ counter }}, "click", function() {
-
+                    console.log(marker{{counter}});
+                    document.getElementById("field_name").innerHTML = contentString;
                   infoWindow{{counter}}.open(map, marker{{ counter }});
                 });
 
@@ -316,6 +317,7 @@
         <h2 class="mdl-card__title-text">Driver Information</h2>
       </div>
       <div class="mdl-card__supporting-text">
+        <div id="field_name">If this text changes, it works</div>
         {{ contentString }}
       </div>
       <div class="mdl-card__actions mdl-card--border">
