@@ -58,10 +58,13 @@ def current_drivers():
     drivers = get_drivers()
     return render_template("current_drivers.html", drivers=drivers)
 
+@app.route("/confirmed")
+def confirmed():
+    return render_template("confirmed.html")
+
 @app.route("/test")
 def test():
-    drivers = get_drivers()
-    return render_template("test.html", drivers=drivers)
+    return render_template("confirmed.html")
 
 def get_drivers():
     fp = open("app/static/json/driver_details.json", "r")
