@@ -6,7 +6,7 @@
       "rate": 5,
       "available": true,
       "call_number": 1128091,
-      "location": [103.82, 1.29]
+      "location": [103.772951, 1.306231]
   },
   "1": {
       "nickname": "Ptolmy",
@@ -15,7 +15,7 @@
       "rate": 7,
       "available": true,
       "call_number": 1212121,
-      "location": [103.77, 1.44]
+      "location": [103.79, 1.322]
   },
   "2": {
       "nickname": "Euripides",
@@ -24,7 +24,7 @@
       "rate": 5.5,
       "available": true,
       "call_number": 1212121,
-      "location": [103.85, 1.33]
+      "location": [103.78, 1.33]
   },
   "3": {
       "nickname": "Dionysus",
@@ -33,7 +33,7 @@
       "rate": 8.5,
       "available": true,
       "call_number": 1212121,
-      "location": [103.77, 1.29]
+      "location": [103.79, 1.3333]
   },
   "another_driver_address": {
       "nickname": "omegaAlpha",
@@ -42,7 +42,7 @@
       "rate": 7,
       "available": true,
       "call_number": 1212121,
-      "location": [103.96, 1.35]
+      "location": [103.76, 1.343]
   },
   "more_driver_addresses": {
       "nickname": "Thrasymachus",
@@ -51,6 +51,6 @@
       "rate": 3,
       "available": true,
       "call_number": 1214234,
-      "location": [103.907, 1.41]
+      "location": [103.788, 1.3]
   }
 }
