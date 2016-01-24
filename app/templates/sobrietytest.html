@@ -1,0 +1,439 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript" src="static/js/jquery-1.11.2.min.js"></script>
+<link rel="import" href="https://www.polymer-project.org/0.5/components/paper-ripple/paper-ripple.html">
+<link rel="import" href="http://www.polymer-project.org/0.5/components/core-icons/core-icons.html">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<style>
+
+body {
+    background-color: #333333;
+    font-family: 'Montserrat', sans-serif;
+    color: fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+}
+
+.container {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#form-header {
+    text-align: center;
+    font-size: 50px;
+    padding-top: 70px;
+}
+
+#person-form {
+    font-size: 25px;
+    text-align: center;
+}
+
+form#person-form > input.form {
+    height: 70px;
+    margin: 10px;
+    width: 80%;
+    font-size: 25px;
+    text-align: center;
+
+}
+
+#map-canvas {
+    height: 800px;
+    width: 100%;
+    padding: 0.5%;
+    margin: auto;
+    position: relative;
+    top: 2%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#splash-button a {
+    text-decoration: none;
+    color: #f00;
+}
+
+a:  {
+    text-decoration: none;
+    color: #fff;
+}
+
+nav {
+    position: absolute;
+    z-index: 1000;
+}
+
+
+body {
+    background-color: #333333;
+    font-family: 'Montserrat', sans-serif;
+    color: fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+}
+
+.container {
+    text-align: center;
+    align-content: center;
+}
+
+/* Button */
+.button {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    position: relative;
+    width: 120px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 2px;
+    font-size: 0.9em;
+    background-color: #fff;
+    color: #646464;
+}
+
+.button.blue {
+    background-color: #4285f4;
+    color: #fff;
+}
+
+/* FAB */
+.fab {
+    text-align: center;
+    position: relative;
+    align-content: center;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    color: #fff;
+    overflow: hidden;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.fab.blue {
+    background-color: #4285f4;
+    position: relative;
+    text-align: center;
+    display: inline-block;
+}
+
+
+.fab:active {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+    transition-delay: 0s;
+}
+
+
+.bg {
+    display: none;
+}
+
+.test {
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    background-color: #4285f4;
+    color: #fff;
+    border: none;
+    font-size: 65px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.test-big {
+    height: 600px;
+    width: 600px;
+    border-radius: 125px;
+    color: white;
+    background-color: darkgreen;
+    border: none;
+    font-size: 125px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.test-testing {
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    color: white;
+    background-color: darkred;
+    border: none;
+    font-size: 125px;
+}
+
+.test:focus{
+    outline: 0;
+}
+
+.test-big:focus{
+    outline: 0;
+}
+
+#resultDiv {
+    font-size: 40px;
+    height: 50px;
+    margin-top: 20%;
+    padding-bottom: 50px;
+    color: white;
+}
+
+#passDiv {
+    padding-top: 40px;
+    font-size: 40px;
+    color: white;
+}
+
+#passDiv-fail {
+    font-size: 60px;
+    color: red;
+}
+
+#passDiv-pass {
+    font-size: 40px;
+    color: lightgreen;
+}
+
+nav {
+    position: absolute;
+    z-index: 1000;
+}
+
+nav {
+    margin-top: 25px;
+    text-align: center;
+}
+.nav-img {
+    max-width: 15%;
+    padding-left: 7%;
+    padding-right: 7%;
+}
+
+#splash-content {
+    margin-bottom: 60%;
+}
+
+#splash-content2 {
+    margin-bottom: 15%;
+}
+
+.splash-img {
+    width: 500px;
+}
+
+#splash-button {
+    position: relative;
+    display: none;
+    width: 80%;
+    height: 200px;
+    margin-top: 70px;
+    top: 70%;
+    background-color: #4285f4;
+    color: #fff;
+    border: none;
+    font-size: 70px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.rm {
+    display: inline-block;
+}
+
+#splash-button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:  {
+    text-decoration: none;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+<nav>
+    <a href="#"><img class="nav-img" src="static/img/sobriety-test-active.png"></a>
+    <a href="#"><img class="nav-img" src="static/img/go-to-map.png"></a>
+    <a href="{{url_for('drive_home')}}"><img class="nav-img" src="static/img/book-taxi.png"></a>
+</nav>
+<script>window.jQuery </script>
+
+
+<div class="container">
+    <h1 class="bg">Accelerometer Stuffs</h1>
+
+    <p><div class="bg" id="textDiv"></div></p>
+    <p><div id="resultDiv"></div></p>
+
+
+    <div class="fab blue">
+        <button class="test" id="calculate">START TEST</button>
+        <!--    <paper-ripple class="circle recenteringTouch" fit></paper-ripple>-->
+    </div>
+
+    <p><div id="passDiv">Walk slowly with the phone parallel to the ground</div></p>
+    <a target="_blank" href="https://m.uber.com/"><button id="splash-button" class="bg">BOOK MY RIDE</button></a>
+</div>
+<!--<a href=# id="calculate">Start Testing</a>-->
+
+<script type="text/javascript">
+
+var x = 0, y = 0,
+    vx = 0, vy = 0,
+    ax = 0, ay = 0,gx = 0, gy = 0, gz = 0;
+
+var div = document.getElementById("textDiv");
+div.textContent = "testing";
+var div2 = document.getElementById("resultDiv");
+var div3 = document.getElementById("passDiv");
+var text = div.textContent;
+
+if (window.DeviceMotionEvent) {
+  window.addEventListener('devicemotion', deviceMotionHandler, false);
+  window.ondevicemotion = deviceMotionHandler;
+}
+/*
+if (window.DeviceOrientationEvent) {
+  window.addEventListener('deviceorientation', function(eventData) {
+    // gamma is the left-to-right tilt in degrees, where right is positive
+    gx = eventData.gamma;
+
+    // beta is the front-to-back tilt in degrees, where front is positive
+    gy = eventData.beta;
+
+    // alpha is the compass direction the device is facing in degrees
+    gz = eventData.alpha;
+
+    // call our orientation event handler
+  }, false);
+}
+
+window.setInterval( function() {
+        $.getJSON('//e04b1656.ngrok.io/_processA', {
+                ggx: gx,
+                ggy: gy,
+                ggz: gz
+              }, function(data) {
+        	//div.textContent = data.result;
+        	//var text = div.textContent;
+        	return false;
+      	});
+    }, 2000);*/
+
+var testing = false;
+var bA = 0, bG=0, bgx = 0, bgy = 0, bgz = 0, AvA=0, AvG=0;
+var marginA = 0.3;
+var steps = 0;
+var curseconds = 0, waitseconds = 1;
+
+function deviceMotionHandler(eventData) {
+  // Grab the acceleration from the results
+  var acceleration = eventData.acceleration;
+
+  //info = xyz.replace("X", acceleration.x);
+  //info = info.replace("Y", acceleration.y);
+  //info = info.replace("Z", acceleration.z);
+  //document.getElementById("moAccel").innerHTML = info;
+
+  // Grab the acceleration including gravity from the results
+  acceleration = eventData.accelerationIncludingGravity;
+  //info = xyz.replace("X", acceleration.x);
+  //info = info.replace("Y", acceleration.y);
+  //info = info.replace("Z", acceleration.z);
+  //document.getElementById("moAccelGrav").innerHTML = info;
+
+  // Grab the rotation rate from the results
+  var rotation = eventData.rotationRate;
+  gx = rotation.alpha;
+  gy = rotation.beta;
+  gz = rotation.gamma;
+  //info = xyz.replace("X", rotation.alpha);
+  //info = info.replace("Y", rotation.beta);
+  //info = info.replace("Z", rotation.gamma);
+  //document.getElementById("moRotation").innerHTML = info;
+  AvA = ((Math.abs(acceleration.x)+Math.abs(acceleration.y)+Math.abs(acceleration.z))/3);
+  AvG = ((Math.abs(gx)+Math.abs(gy)+Math.abs(gz))/3);
+  div.textContent = "AvG: "+AvG;
+  var text = div.textContent;
+  var cs = new Date().getTime() / 1000;
+
+    if (AvG >= 0.9 && testing == true) {
+  		div3.textContent = "Perhaps a cab, sir?";
+        $('#passDiv').attr("id","passDiv-fail");
+        document.getElementById("splash-button").style.display = "inline-block";
+  		var text3 = div3.textContent;
+  		testing = false;
+  	}
+
+  if(testing == true) {
+  	if(AvA > (bA+marginA) && cs > (curseconds+waitseconds)) {
+  		curseconds = cs;
+  		steps = steps+1;
+  		if (steps>=10) {
+  			div3.textContent = "Splendid! You've passed";
+            $('#passDiv').attr("id","passDiv-pass");
+            document.getElementById("passDiv-pass").style.color = "LightGreen";
+            $('#splash-button').attr("class","rm");
+
+  			var text3 = div3.textContent;
+  			testing = false;
+
+        // redirect
+        window.location.href="/drive_home"
+  		}
+  	}
+//    div2.textContent = "Testing. Steps: "+steps+" , bA: "+bA;
+  	div2.textContent = "Steps";
+    $('#calculate').attr("class","test-testing").html(steps);
+
+  	var text2 = div2.textContent;
+  }
+  else
+  {
+  	div2.textContent = "PRESS TO START SOBRIETY TEST";
+  	var text2 = div2.textContent;
+  }
+  // // Grab the refresh interval from the results
+  //info = eventData.interval;
+  //document.getElementById("moInterval").innerHTML = info;
+}
+
+$(function() {
+    $('#calculate').bind('click', function() {
+
+        $('#calculate').attr("class","test-big").html("3");
+        $('#calculate')
+            .delay(1000)
+            .queue(function (next) {
+            $(this).html("2");
+            next();
+        });
+        $('#calculate')
+            .delay(1000)
+            .queue(function (next) {
+            $(this).html("1");
+            next();
+        });
+        testing = true;
+        bA = AvA;
+        bG = AvG;
+        curseconds = new Date().getTime() / 1000;
+        return false;
+    });
+});
+
+</script>
+
+</body></html>

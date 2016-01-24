@@ -1,0 +1,24 @@
+<div class="mdl-cell">
+  <div class="mdl-demo mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title" id="map-canvas{{ counter }}" style="height: 100%;">
+      <h2 class="mdl-card__title-text">Location</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <p>Nickname: {{ driver[1]["nickname"] }}</p>
+      <p>Address: {{ driver[1]["address"] }}</p>
+      <p>Driver Rating Points: {{ driver[1]["drp"] }}</p>
+      <p>Available: {{ driver[1]["available"] }}</p>
+      <p>Rate: SGD {{ driver[1]["rate"] }}/km</p>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        Contact
+      </a>
+    </div>
+    <div class="mdl-card__menu">
+      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <i class="material-icons">share</i>
+      </button>
+    </div>
+  </div>
+</div>

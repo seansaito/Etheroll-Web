@@ -1,10 +1,336 @@
+<!DOCTYPE HTML>
 <html>
-	<head>
-	</head>
+<head>
+    <title>Alfred Tracker</title>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <link href="/static/css/main.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,500,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css" />
+    <script src="//storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+    <style>
 
-	<body>
-        hurray
-    </body>
+        body {
+            background-color: #333333;
+            font-family: 'Montserrat', sans-serif;
+            color: fff;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-touch-callout: none;
+        }
 
+        #map-canvas {
+            height: 800px;
+            width: 100%;
+            padding: 0.5%;
+            margin: auto;
+            position: relative;
+            top: 2%;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+
+        nav {
+            position: absolute;
+            z-index: 1000;
+        }
+
+        nav {
+            margin-top: 25px;
+            text-align: center;
+        }
+        .nav-img {
+            max-width: 15%;
+            padding-left: 7%;
+            padding-right: 7%;
+        }
+
+        h2, #log {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        #log a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .contact {
+            height: 100px;
+            text-align: center;
+            font-size: 80px;
+            background-color: #212121;
+            padding: 5px;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // GLOBAL VARS //
+
+        // Labels for Map Markers
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var labelIndex = 0;
+
+        // Google map object
+        var map = null;
+
+        // Marker store
+        var markerStore = [];
+
+        // Users
+        var users = {};
+
+        // Random id generated when first connecting
+        // List of possible ids
+        var ids = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+
+        // Get random character
+        var rand_id = ids[Math.floor(Math.random() * ids.length)];
+
+        // User id based on initials
+        var initials;
+
+        // Counter that keeps track of number of times zoomed
+        var zoom_counter = 0;
+
+        // Initialize map
+        // function initMap() {
+        //   var mapOptions = {
+        //     center: new google.maps.LatLng(1.3, 103.8),
+        //     zoom: 15,
+        //     mapTypeId: google.maps.MapTypeId.ROADMAP
+
+        //   };
+        //   map = new google.maps.Map(document.getElementById("map-canvas"),
+        //                                     mapOptions);
+        // }
+
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById('map-canvas'), {
+            center: {lat: 1.3, lng: 103.8},
+            zoom: 16
+          });
+          var infoWindow = new google.maps.InfoWindow({map: map});
+
+          // Try HTML5 geolocation.
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('Location found.');
+              map.setCenter(pos);
+              {% set counter = 1 %}
+              {% for marker in markers.values() %}
+                var marker{{ counter }} = new google.maps.Marker({
+                  position: new google.maps.LatLng({{ marker[2][0] }}, {{ marker[2][1] }}),
+                  map: map
+                })
+
+
+                var contentString = "<div id='container'><par>DriverRating: {{ marker[0]}}\n Rate: {{ marker[1] }} $/km </par>";
+                {% for relay in markers[marker] %}
+                  contentString = contentString + "<p>{{ relay }}</p>";
+                {% endfor %}
+                contentString = contentString + "</div>";
+
+                console.log(contentString);
+
+                var infoWindow{{ counter }} = new google.maps.InfoWindow({
+                  content: contentString
+                });
+
+                google.maps.event.addListener(marker{{ counter }}, "click", function() {
+                    console.log(marker{{counter}});
+                    document.getElementById("field_name").innerHTML = contentString;
+                  infoWindow{{counter}}.open(map, marker{{ counter }});
+                });
+
+                {% set counter = counter + 1 %}
+
+              {% endfor %}
+
+            }, function() {
+              handleLocationError(true, infoWindow, map.getCenter());
+            });
+          } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+          }
+
+
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(browserHasGeolocation ?
+                                'Error: The Geolocation service failed.' :
+                                'Error: Your browser doesn\'t support geolocation.');
+        }
+
+        google.maps.event.addDomListener(window, 'load', initMap);
+
+
+
+        // This can be used to reset the map as well
+        function setMapOnAll(map) {
+          for (var i = 0; i < markerStore.length; i++) {
+            markerStore[i].setMap(map);
+          }
+        }
+
+        // Add a marker
+        function addMarker(map_coords, label, from_users) {
+          var lat;
+          var lon;
+
+          if (from_users) {
+            lat = map_coords.lat;
+            lon = map_coords.lon;
+          } else {
+            lat = map_coords.data.lat;
+            lon = map_coords.data.lon;
+          }
+
+          var latLong = new google.maps.LatLng(lat, lon);
+          var marker = new google.maps.Marker({
+              position: latLong,
+              label: label
+          });
+          marker.setMap(map);
+
+          if (zoom_counter === 0){
+            map.setZoom(15);
+            zoom_counter++;
+          }
+
+          if (!from_users) {
+            map.setCenter(marker.getPosition());
+          }
+
+          markerStore.push(marker);
+        }
+
+        // Updates map using all coordinates in the user dictionary.
+        function initMapWithCoords() {
+          // First reset map
+          setMapOnAll(null);
+
+          var marker;
+
+          // Call addMarker for each user in users
+          // Create a marker for each user in users
+          for (var user in users) {
+            console.log(user);
+            console.log(users[user]["lat"] + " " + users[user]["lon"]);
+
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(users[user]["lat"], users[user]["lon"]),
+              map: map,
+              label: users[user]["uid"]
+            });
+            markerStore.push(marker);
+
+            if (users[user]["uid"] === initials) {
+              map.setCenter(marker.getPosition());
+            }
+
+            if (zoom_counter === 0){
+              map.setZoom(15);
+              zoom_counter++;
+            }
+
+            console.log("Called");
+          }
+        }
+
+        function printLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          }
+        };
+
+        function showPosition(position) {
+          // For testing - vary the marker position with each call.
+
+          var random_lat = Math.random()/100;
+          var random_lon = Math.random()/100;
+
+          // add your location to the map
+          /*
+          coords = {
+            "data": {
+              "lat": position.coords.latitude + random_lat,
+              "lon": position.coords.longitude + random_lon
+            }
+          }
+          */
+
+          coords = {
+            "data": {
+              "lat": position.coords.latitude,
+              "lon": position.coords.longitude
+            }
+          }
+
+
+
+          var mapOptions = {
+            center: new google.maps.LatLng(position),
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById("map-canvas"),
+                                            mapOptions);
+
+        };
+    </script>
+</head>
+<body>
+<div class="content-grid mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+    <!-- add content here -->
+    Gruber - We grew Uber
+  </div>
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--4-col-phone" id="map-canvas" style="position:relative;">
+    <!-- also here -->
+  </div>
+
+    <!-- and probably also here -->
+    <!-- Wide card with share menu button -->
+    <div class="mdl-card mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Driver Information</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <div id="field_name">If this text changes, it works</div>
+        {{ contentString }}
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Get Driver
+        </a>
+      </div>
+      <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+          <i class="material-icons">share</i>
+        </button>
+      </div>
+    </div>
+</div>
 </body>
 </html>
