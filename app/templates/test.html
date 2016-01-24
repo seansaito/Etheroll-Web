@@ -137,11 +137,19 @@
         var map{{ counter2 }};
 
         var mapOptions{{ counter2 }} = {
-          zoom: 11,
+          zoom: 15,
           center: new google.maps.LatLng({{ driver[1]["location"][1] }}, {{ driver[1]["location"][0] }})
         };
 
         map{{ counter2 }} = new google.maps.Map(document.getElementById("map-canvas{{ counter2 }}"), mapOptions{{counter2}});
+
+        map{{counter2}}.setZoom(3);
+
+        var marker{{ counter2 }} = new google.maps.Marker({
+            position: new google.maps.LatLng({{ driver[1]["location"][1] }}, {{driver[1]["location"][0] }}),
+        });
+
+        marker{{ counter2 }}.setMap(map{{counter2}});
 
         {% set counter2 = counter2 + 1 %}
         {% endfor %}

@@ -8,6 +8,33 @@
       "call_number": 1128091,
       "location": [103.82, 1.29]
   },
+  "1": {
+      "nickname": "Ptolmy",
+      "address": "50a2dbcf-c22f-11e5-ab1b-3c970e9da27d",
+      "drp": 123,
+      "rate": 7,
+      "available": true,
+      "call_number": 1212121,
+      "location": [103.77, 1.44]
+  },
+  "2": {
+      "nickname": "Euripides",
+      "address": "73378ce1-c22f-11e5-b78c-3c970e9da27d",
+      "drp": 179,
+      "rate": 5.5,
+      "available": true,
+      "call_number": 1212121,
+      "location": [103.85, 1.33]
+  },
+  "3": {
+      "nickname": "Dionysus",
+      "address": "8c3a7180-c22f-11e5-922f-3c970e9da27d",
+      "drp": 300,
+      "rate": 8.5,
+      "available": true,
+      "call_number": 1212121,
+      "location": [103.77, 1.29]
+  },
   "another_driver_address": {
       "nickname": "omegaAlpha",
       "address": "52757d1e-c228-11e5-8be7-3c970e9da27d",
@@ -24,6 +51,6 @@
       "rate": 3,
       "available": true,
       "call_number": 1214234,
-      "location": [103.96, 1.34]
+      "location": [103.907, 1.41]
   }
 }

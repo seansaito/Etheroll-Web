@@ -4,7 +4,7 @@ function() {
   var map{{ counter }};
   function initialize() {
    var mapOptions{{ counter }} = {
-     zoom: 15,
+     zoom: 1,
      center: new google.maps.LatLng(driver[1]["location"][0], driver[1]["location"][1])
    };
 
