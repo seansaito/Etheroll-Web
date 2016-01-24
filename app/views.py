@@ -37,7 +37,16 @@ def grabcar():
 	user_pw = request.cookies.get('password')
 	print user_id
 	print user_pw
-	return render_template("grabcar.html")
+	markers = {}
+	path = "app/static/json/driver_details.json"
+	with open(path, "r+") as driver_data:
+		drivers = json.load(driver_data)
+	for values in drivers.values():
+		print values
+		if "available" in values:
+			markers[values["call_number"]] = [values["drp"],values["rate"], values["location"]]
+	print markers
+	return render_template("grabcar.html",markers=markers)
 
 
 @app.route("/sobrietytest")
